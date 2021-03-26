@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.persist.PushHelloModel;
 import com.example.demo.websocket.WebSocketClient;
+import com.example.demo.websocket.sender.PushHelloSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class OptController {
 
     @Autowired
-    WebSocketClient webSocketClient;
+    PushHelloSender pushHelloSender;
 
     @PostMapping("sendMsg")
-    public void send(String holder_id, String msg) throws Exception {
-        //
+    public void send(String clientId, String msg) throws Exception {
+        PushHelloModel model = new PushHelloModel();
+        model.setKey("Server");
+        model.setValue(msg);
+        pushHelloSender.send(clientId, model);
     }
 }

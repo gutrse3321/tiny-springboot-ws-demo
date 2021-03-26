@@ -2,7 +2,9 @@ package com.example.demo.websocket.context;
 
 import com.example.demo.websocket.WebSocketClient;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * @author Tomonori
@@ -22,6 +24,10 @@ public class ClientContext {
 
     public static WebSocketClient get(String clientId) {
         return clientMap.get(clientId);
+    }
+
+    public static List<String> clientIds() {
+        return clientMap.keySet().stream().collect(Collectors.toList());
     }
 
     public static void clear(String clientId) {

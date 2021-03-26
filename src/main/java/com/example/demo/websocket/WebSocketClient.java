@@ -35,8 +35,6 @@ public class WebSocketClient implements InitializingBean {
     //函数池
     private HashMap<String, WsAbstractHandler> handlerPool = new HashMap<>();
 
-    //socket对象池
-    private static ConcurrentHashMap<String, WebSocketClient> socketMap = new ConcurrentHashMap<>();
     //client 连接会话
     private Session session;
     private String clientId;

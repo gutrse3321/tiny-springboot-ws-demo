@@ -11,12 +11,12 @@ export default Vue.extend({
   data() {
     return {
       msg: '',
-      holderId: "me",
+      holderId: "yuki",
       ws: ''
     }
   },
   created() {
-    this.ws = new WebSocket('ws://127.0.0.1:8080' + '/ping/' + this.holderId)
+    this.ws = new WebSocket('ws://127.0.0.1:8080/' + this.holderId)
     this.ws.onopen = this.onOpen
     this.ws.onerror = this.onError
     this.ws.onmessage = this.onMessage
@@ -44,7 +44,6 @@ export default Vue.extend({
       let res = msg.data
       console.log(msg)
       this.msg = res
-      this.ws.send('我收到了')
     },
     /**
      * 发送消息给服务端
